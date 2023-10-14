@@ -1,10 +1,10 @@
 <img src='https://cdn-icons-png.flaticon.com/512/4773/4773193.png' width='60px' />
-<h1>Health-Check</h1>
+<h1>SymptoSense</h1>
 <br/>
 
 <h2> Brief </h2>
 <hr/>
- Health Check ✔ is a Machine Learning Web Application made using React that can predict mainly three diseases i.e. Diabetes, Heart Disease, and Cancer.
+ SymptoSense ✔ is a Machine Learning Web Application made using React that can predict mainly three diseases i.e. Diabetes, Heart Disease, and Cancer.
  This would be a Machine Learning Web Application that can predict three diseases i.e. Diabetes, Heart disease, and Cancer. The datasets have been taken from Kaggle. And overall analysis and model building for the diseases have been done in respective Jupyter Notebooks.
  
  

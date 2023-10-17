@@ -82,7 +82,7 @@ export default function SignUp() {
                 <form className='max-w-[400px] w-full mx-auto bg-white p-8' onSubmit={handleSignUp} method="POST">
                     <h2 className='text-4xl font-bold text-center py-4'>SymptoSense</h2>
                     <div className='flex flex-col mb-4'>
-                        <label>FullName</label>
+                        <label>Full Name</label>
                         <input className='border relative bg-gray-100 p-2' type="text"
                             onChange={({ target }) => setFullName(target.value)}
                         />

@@ -41,12 +41,14 @@ export default function Home() {
                                 />
                             </h1>
                         </div>
-                        <div className="md:w-1/2">
-                            <img src={home1} alt="Check New Disease" className="mt-2 w-full pb-2 md:pb-0" />
-                            <Link to="/check-symptoms">
-                                <button className="font-semibold bg-blue-500 text-white px-4 py-4 rounded-md">Check For New Disease</button>
-                            </Link>
+                    </div>
+                    <div className="md:w-1/2 flex flex-col justify-center items-center">
+                        <div style={{ maxWidth: '300px' }}>
+                            <img src={home1} alt="Check New Disease" className="w-full" />
                         </div>
+                        <Link to="/check-symptoms">
+                            <button className="font-semibold bg-green-500 text-white px-4 py-4 rounded-md mt-4">Check For New Disease</button>
+                        </Link>
                     </div>
                     <div className="flex flex-col my-16 border-t-4 py-8">
                         <p className="font-bold text-gray-700 text-2xl py-4">Previous Records</p>

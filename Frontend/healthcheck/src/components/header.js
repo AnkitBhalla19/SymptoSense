@@ -6,10 +6,7 @@ import logoImg from '../assets/logoSympto1.jpg'
 
 
 export default function Header() {
-<<<<<<< HEAD
-=======
     const feedbackurl="/Feedback UI Design/index.html"
->>>>>>> 1370422 (ml model integrated)
     const { firebase } = useContext(FirebaseContext);
     const { user } = useContext(UserContext);
     // const avatarPath = avatarsUrl(user ? user.displayName : null);
@@ -65,8 +62,6 @@ export default function Header() {
                                     <Link to={`/signup`}>
                                         <button type="button" className="font-bold text-sm rounded text-blue-medium w-20 h-8">Sign Up</button>
                                     </Link>
-<<<<<<< HEAD
-=======
                                     {/* <>
                                     <iframe
                                         src={feedbackurl}
@@ -75,7 +70,6 @@ export default function Header() {
                                         height="100%"
                                         />
                                     </> */}
->>>>>>> 1370422 (ml model integrated)
                                 </>
                             )
                         }

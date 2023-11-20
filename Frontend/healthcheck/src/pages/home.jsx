@@ -7,6 +7,7 @@ import { useContext } from "react";
 import UserContext from "../context/user";
 import { Typewriter } from "react-simple-typewriter";
 import "react-simple-typewriter/dist";
+import Footer from "./Footer";
 
 export default function Home() {
     const [prevDisease, setPrevDisease] = useState();
@@ -77,6 +78,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

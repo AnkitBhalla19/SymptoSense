@@ -17,6 +17,10 @@ export default function CheckDisease() {
 
     const [otherOccuringSymptoms, setOtherOccuringSymptoms] = useState()
 
+    const [selectedDisease, setSelectedDisease] = useState(null);
+    const [diseaseDetails, setDiseaseDetails] = useState(null);
+
+
     const [diseases, setDiseases] = useState()
 
     const { user } = useContext(UserContext);
@@ -65,6 +69,26 @@ export default function CheckDisease() {
         await addNewDisease(userId, obj, userSelectedSymptoms)
     }
 
+    const handleDiseaseDetails = async (diseaseName) => {
+        try {
+            const response = await axios.get(`${BACKURL}/disease-detail/${encodeURIComponent(diseaseName)}`);
+            setDiseaseDetails(response.data);
+            setSelectedDisease(diseaseName);
+        } catch (error) {
+            console.error('Error fetching disease details:', error);
+            // Handle error, show a toast, etc.
+        }
+    };
+
+    const generateTableRows = (details) => {
+  return Object.entries(details).map(([key, value]) => (
+    <tr key={key}>
+      <td className="font-bold">{key}</td>
+      <td>{value}</td>
+    </tr>
+  ));
+};
+
 
     return (
         <div>
@@ -85,7 +109,7 @@ export default function CheckDisease() {
                     </div>
                 }
                 {
-                    (checkNum == 1 && synonymousSymptoms) &&
+                    (checkNum === 1 && synonymousSymptoms) &&
                     <div>
                         <div>
                             <p>These are the symptoms from your input that matched our database :-</p>
@@ -115,7 +139,7 @@ export default function CheckDisease() {
                     </div>
                 }
                 {
-                    checkNum == 2 && otherOccuringSymptoms && <div>
+                    checkNum === 2 && otherOccuringSymptoms && <div>
                         <h3 className="py-8"><span className="font-bold text-gray-700 text-xl">Select Other Symptoms </span>(These are the symptoms that generally occur with your selected symptoms)</h3>
                         <ul className="grid grid-cols-3 gap-y-2 overflow-y-scroll max-h-[300px]">
                             {otherOccuringSymptoms.map((item, idx) => (
@@ -153,20 +177,54 @@ export default function CheckDisease() {
                         </div>
                     </div>
                 }
-                {
-                    checkNum == 3 && diseases &&
-                    (
+                            {
+                checkNum === 3 && diseases && (
+                    <div>
+                        <h1 className="text-xl mb-8">Top 10 Possible diseases based on your symptoms are:</h1>
                         <div>
-                            <h1 className="text-xl mb-8">Top 10 Possible disease based on your symptoms are:</h1>
-                            <div>
-                                {diseases.map((disease) => (
-                                    <p className={`py-2 text-lg`}>{disease[0]} <span className={`py-2 ${disease[1] <= 0.490 && "text-green-500"} ${disease[1] >= 0.50 && disease[1] < 0.59 && "text-yellow-500"}  ${disease[1] >= 0.59 && "text-red-500"} `}>(Probability: {disease[1]})</span></p>
-                                ))}
-                            </div>
+                            {diseases.map((disease) => (
+                                <p
+                                    className={`py-2 text-lg cursor-pointer`}
+                                    onClick={() => handleDiseaseDetails(disease[0])}
+                                    key={disease[0]}
+                                >
+                                    {disease[0]}{' '}
+                                    <span
+                                        className={`py-2 ${disease[1] <= 0.490
+                                            ? 'text-green-500'
+                                            : disease[1] >= 0.50 && disease[1] < 0.59
+                                                ? 'text-yellow-500'
+                                                : disease[1] >= 0.59
+                                                    ? 'text-red-500'
+                                                    : ''
+                                            }`}
+                                    >
+                                        (Probability: {disease[1]})
+                                    </span>
+                                </p>
+                            ))}
                         </div>
-                    )
-                }
+                        {/* Display detailed information when a disease is selected */}
+                        {selectedDisease && (
+                            <div>
+                                <h2>Disease Details for {selectedDisease}</h2>
+                                {diseaseDetails ? (
+                                    <div>
+                                        <table className="min-w-full divide-y divide-gray-200">
+                                            <tbody>
+                                                {generateTableRows(diseaseDetails)}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ) : (
+                                    <p>Loading details...</p>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                )
+            }
             </div>
         </div>
-    )
+    );
 }

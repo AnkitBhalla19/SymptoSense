@@ -38,7 +38,6 @@ stop_words = stopwords.words("english")
 lemmatizer = WordNetLemmatizer()
 splitter = RegexpTokenizer(r"\w+")
 
-# scores
 
 
 def score_comb():
@@ -48,8 +47,6 @@ def score_comb():
     lr = lr.fit(X, Y)
     return mean(cross_val_score(lr, X, Y, cv=5))
 
-
-# synonym func
 
 
 def synonyms(term):
@@ -164,8 +161,8 @@ def predict_probability(final_symp):
             len(set(final_symp)) + 1
         )
         prob *= mean_scores
-        rounded_percentage = round(prob * 100)
-        topk_dict[diseases[t]] = f"{rounded_percentage}%"
+        # rounded_percentage = round(prob * 100)
+        topk_dict[diseases[t]] = prob
         print(topk_dict)
     j = 0
     topk_index_mapping = {}

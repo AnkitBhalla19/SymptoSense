@@ -5,7 +5,7 @@
 <h2> Brief </h2>
 <hr/>
  SymptoSense ✔ is a Machine Learning Web Application made using React that can predict mainly three diseases i.e. Diabetes, Heart Disease, and Cancer.
- This would be a Machine Learning Web Application that can predict three diseases i.e. Diabetes, Heart disease, and Cancer. The datasets have been taken from Kaggle. And overall analysis and model building for the diseases have been done in respective Jupyter Notebooks.
+ This would be a Machine Learning Web Application that can predict three diseases. The datasets have been taken from Kaggle. And overall analysis and model building for the diseases have been done in respective Jupyter Notebooks.
  
  
  <br/>

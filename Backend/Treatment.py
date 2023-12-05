@@ -16,7 +16,7 @@ def diseaseDetail(term):
         query = dis + " wikipedia"
         for sr in search(query, tld="co.in", stop=10, pause=0.5):
             match = re.search(r"wikipedia", sr)
-            filled = 0
+            
             if match:
                 wiki = requests.get(sr, verify=False)
                 soup = BeautifulSoup(wiki.content, "html5lib")
@@ -32,6 +32,5 @@ def diseaseDetail(term):
                             value = columns[1].text.strip()
                             details[key] = value
                     return details
-                if filled:
-                    break
+                
     return ret

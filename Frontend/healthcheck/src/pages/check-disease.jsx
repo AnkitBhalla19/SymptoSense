@@ -90,6 +90,7 @@ export default function CheckDisease() {
 };
 
 
+
     return (
         <div>
             <Header />
